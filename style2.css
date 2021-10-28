@@ -1,0 +1,37 @@
+form{
+   width: 400px;
+    border: 1px solid black;
+    margin-left: 10 px;
+}
+.inscrire{
+    border : 1px solid white ;
+    background-color: #11BAE8;
+    color: white;
+}
+.tab{
+    margin: 5px;
+    font-size:20px;
+    width: 360px;
+}
+.floatLabel{
+    margin: 5px;
+}
+.bloc{
+     background-color: #11BAE8;
+    border: 1px solid black;
+    height: 75px;
+}
+.connect{
+    margin-left: 160px;
+    color: white;
+}
+
+.mon{
+    margin-left: 305px;
+    color: #11BAE8;
+}
+input[type="submit"]{
+    background-color: #11BAE8;
+
+
+    

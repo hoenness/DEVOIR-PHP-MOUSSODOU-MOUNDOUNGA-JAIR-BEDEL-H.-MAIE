@@ -1,0 +1,55 @@
+//.container{
+    border : 1px solid black;
+    min-width: 200px;
+    
+}
+.inscrire{
+    border : 1px solid white ;
+    background-color: #11BAE8;
+    
+}
+.inscrire2{
+    color : white ; 
+    font-size: 1.6em;
+}
+.mon{
+    margin-left: 320px;
+    color: #11BAE8;
+    
+}
+.connect{
+    margin-left: 160px;
+    color: white;
+
+}
+.bloc{
+     background-color: #11BAE8;
+    border: 1px solid white;
+    height: 75px;
+}
+//a.tab{
+    width :570px;
+}
+form{
+    width: 400px;
+    border: 1px solid black;
+    margin-left: 10 px;
+}
+label{
+    
+}
+.floatLabel{
+    margin: 5px;
+}
+.tab{
+    margin: 5px;
+    font-size:20px;
+    width: 360px;
+    
+}
+input[type="submit"]{
+    background-color: #11BAE8;
+}
+.mot{
+    color: white;
+}
