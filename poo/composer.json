@@ -1,0 +1,14 @@
+{
+    "name": "jair/poo",
+    "autoload": {
+        "psr-4": {
+            "App\\Models\\": "models/" 
+        }
+    },
+    "authors": [
+        {
+            "name": "jair"
+        }
+    ],
+    "require": {}
+}
