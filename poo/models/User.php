@@ -1,9 +1,13 @@
 <?php
+namespace App\Models;
+
+use App\core\Model;
+
 //Classe est concrete losqu'elle produit des objet, et une classe par defaut est concrete
 //Classe est abstraite lorsqu'elle ne produit pas d'objet
 //on cree une class abstraite grace au mot clé abstract et sont non instanciable
 //classe final lorsquelle ne produise pas de classe fille, on ne peut pas en hérité et on l'obtient grace au mot clé final
- abstract class User{
+  class User extends Model{
     //Attribut d'Instances(ils sont spécifique a chaque objet, c-t-d a chaque fois que l'on va créer un objet type user, il aura un id,login, password, role)
    // or les attribut static sont commun a l'ensmble des objets
    //si on met pivate a l'id,ça veut dire que les class fille ne peuvent atteindre l'attribut  qu'en passant par les getters et setters
@@ -20,7 +24,7 @@
     //ici on a un constructeur par defaut, c-t-d son ajout dans la classe est falcutative
     public function __construct()
     {
-        
+        self::$table="user";
     }
     //Getters methode qui permet de rendre la valeur protectednou private , disponible dans l'interface de l'objet pour que l'attribut soit visible
 

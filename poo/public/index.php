@@ -1,4 +1,7 @@
 <?php
+//on aura tjrs besoin de charger l'autoloading ici pourqu'il puisse faire le chargement automatique
+require_once("../vendor/autoload.php");
+
 //notre application sera lancée a partir d'ici( au niveau du terminal, l'application on la lance sur le dossier public, pour lancer le serveur en local on fera:php -S localhost:8000 -t public)
 //notre url corrspond a: localhost:8000, et toute requete doit passer par là, quel soit post ou get exemple:
 //echo "j suis sur le front controller";
@@ -56,7 +59,7 @@
 
 
 //un RP est un user c'est pourqw il n'y a pas d'erreur 
-$rp=new RP();//New fait appelle au constructeur
+//$rp=new RP();//New fait appelle au constructeur
 $rp->setId(1)
      ->setlogin("douvewane")
      ->setPassword("douve");
@@ -72,6 +75,16 @@ echo $rp->getRole();
 //on peut créer un Namspace Model qui va nous permettre de ranger toutes nos classes Models
 //on peut créer un Namspace controllers qui va nous permettre ranges toutes nos classes controllers
 //on peut créer un Namspace core(configuration,toutes les classes réutilisable) qui va nous permettre ranges toutes nos classes controllers
+//pour faire de l'autoloading avec la notion de namespace il faut utiliser le composer
+//composer:gestionnaires de dependances
+//gestionnaire = dependances, ex de dependance , le dossier core est une dependance qui est un ensemble de classe réutilisable
+//une dependance c'est des classes réutilisable
+//en programation on des Hub de dependances => site qui offre bcp de dependance
+//le gestionnaire de dependance , son role est de pouvoir télécharger, configurer les dépendance dans notre projet
+//en php notre hub de dependance s'applle https://packagist.org/ 
+//maintenanant pour utiliser une classe , on a plus besoin require 
+//on indique seulement le chemein namespace
+use App\Models\RP;
 $rp = new RP();
 
 

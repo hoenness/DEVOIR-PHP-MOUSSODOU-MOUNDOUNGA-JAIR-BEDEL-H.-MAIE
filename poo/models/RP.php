@@ -1,4 +1,5 @@
 <?php
+ namespace App\Models; 
     //la relation d'héritage est rprésenté par un extend
     //Rp hérite de user
     class RP extends User{

@@ -1,4 +1,5 @@
 <?php
+ namespace App\Models; // a chaque fois qu'on voudra accéder a la classe il lui faudra indiquer App\Models
 class Adresse{
     private int $id;
     private string $ville;

@@ -1,4 +1,5 @@
 <?php
+ namespace App\Models; 
 class Module{
     private int $id;
     private string $libelle;
