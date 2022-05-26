@@ -1,13 +1,14 @@
 <?php
- namespace App\Models; 
+namespace App\Models; 
     //la relation d'héritage est rprésenté par un extend
     //Rp hérite de user
     class RP extends User{
 
 //tous les attributs qui doivent etre initialisés au moment de l'instanciation doivent se faire ici
         public function __construct()
-        {
-            $this->role="ROLE";//dès qu'on crée un objet de type RP automatiquement sont role est initiaisé (ecriture liée a protcted)
+        {   
+            parent::__construct();
+            parent::$role="ROLE_RP";//dès qu'on crée un objet de type RP automatiquement sont role est initiaisé (ecriture liée a protcted)
         }
         //en fesant une redefinition qui correspond a une evolution et pour faire une rdefinition on doit respecter
         //-1 heritage de methode quand on a cet heritage, on a la possibilité de la rédefinir c-t-d changer son comportement
@@ -22,6 +23,24 @@
 
             return $this;
         }
+        public static function selectAll()
+        {
+                $sql = "select * from ".parent::$table."  where role like";
+                return parent::database()->executeSelect($sql,[parent::$role]);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
        
     }

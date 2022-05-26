@@ -1,12 +1,21 @@
 <?php
- namespace App\Models; 
+namespace App\Models; 
 class Professeur extends User{
     private string $grade;
-
+    private string $nomComplet;
+    
+    //OneToOne
+    private Adresse|null $adresse=null;
     public function __construct()
         {
-            $this->role="ROLE_PROFESSEUR";
+            parent::$role="ROLE_PROFESSEUR";
+            $this->adresse=new Adresse;
+            
         }
+
+
+
+
 
         //OneToMany avec cours
         //un professeur associe plusieurs cours
@@ -57,6 +66,39 @@ class Professeur extends User{
             return $this;
         }
 
+        public static function selectAll()
+        {
+                $sql = "select * from ? where role like";
+                return parent::database()->executeSelect($sql,[parent::$table,parent::$role]);
+        }
+        public function insert(){
+            $sql="INSERT INTO ? ( `login`, `password`, `grade`, `ville`, `quartier`, `role`,nom_complet) VALUES (?,?,?,?,?,?,?);";//pour recuper la requete , on va sur phpadmin on clic sur la table qui nous intéresse , on cilc insérer, on me xx a partir de la seconde case jusqu'au premier executé apres on exécute
+            return parent::database()->executeUpdate($sql,[parent::$table,$this->login,$this->password,$this->grade,$this->adresse->getVille(),$this->adresse->getQuartier(),parent::$role,$this->nomComplet]);//cette methode sera la meme pour le AC et le RP
+        }
+
+
+
+
+
+    /**
+     * Get the value of nomComplet
+     */ 
+    public function getNomComplet()
+    {
+        return $this->nomComplet;
+    }
+
+    /**
+     * Set the value of nomComplet
+     *
+     * @return  self
+     */ 
+    public function setNomComplet($nomComplet)
+    {
+        $this->nomComplet = $nomComplet;
+
+        return $this;
+    }
 }
 
 

@@ -1,22 +1,24 @@
 <?php
+
 namespace App\Models;
 
-use App\core\Model;
+use App\Core\Model;
 
 //Classe est concrete losqu'elle produit des objet, et une classe par defaut est concrete
 //Classe est abstraite lorsqu'elle ne produit pas d'objet
 //on cree une class abstraite grace au mot clé abstract et sont non instanciable
 //classe final lorsquelle ne produise pas de classe fille, on ne peut pas en hérité et on l'obtient grace au mot clé final
-  class User extends Model{
+abstract class User extends Model
+{
     //Attribut d'Instances(ils sont spécifique a chaque objet, c-t-d a chaque fois que l'on va créer un objet type user, il aura un id,login, password, role)
-   // or les attribut static sont commun a l'ensmble des objets
-   //si on met pivate a l'id,ça veut dire que les class fille ne peuvent atteindre l'attribut  qu'en passant par les getters et setters
-   // et si c'est protected, pas besoin de getters and setter
+    // or les attribut static sont commun a l'ensmble des objets
+    //si on met pivate a l'id,ça veut dire que les class fille ne peuvent atteindre l'attribut  qu'en passant par les getters et setters
+    // et si c'est protected, pas besoin de getters and setter
     protected int $id;
     protected string $login;
     protected string $password;
-    protected string $role;
-     
+    protected static string $role;
+
 
 
     //Metohdes
@@ -24,14 +26,14 @@ use App\core\Model;
     //ici on a un constructeur par defaut, c-t-d son ajout dans la classe est falcutative
     public function __construct()
     {
-        self::$table="user";
+        parent::$table = "user";//ici c'est parent car table a ete defini dans model
     }
     //Getters methode qui permet de rendre la valeur protectednou private , disponible dans l'interface de l'objet pour que l'attribut soit visible
 
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -39,7 +41,7 @@ use App\core\Model;
 
     /**
      * Get the value of login
-     */ 
+     */
     public function getLogin()
     {
         return $this->login;
@@ -47,7 +49,7 @@ use App\core\Model;
 
     /**
      * Get the value of password
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -55,7 +57,7 @@ use App\core\Model;
 
     /**
      * Get the value of role
-     */ 
+     */
     public function getRole()
     {
         return $this->role;
@@ -68,7 +70,7 @@ use App\core\Model;
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -84,7 +86,7 @@ use App\core\Model;
      * Set the value of login
      *
      * @return  self
-     */ 
+     */
     public function setLogin($login)
     {
         $this->login = $login;
@@ -96,7 +98,7 @@ use App\core\Model;
      * Set the value of password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -108,32 +110,16 @@ use App\core\Model;
      * Set the value of role
      *
      * @return  self
-     */ 
+     */
     public function setRole($role)
     {
         $this->role = $role;
 
         return $this;
     }
+
+    public function insert(){
+        $sql="INSERT INTO ".parent::$table." (`login`, `password`, `role`) VALUES ('?', '?', '?');";//pour recuper la requete , on va sur phpadmin on clic sur la table qui nous intéresse , on cilc insérer, on me xx a partir de la seconde case jusqu'au premier executé apres on exécute
+        return parent::database()->executeUpdate($sql,[$this->login,$this->password,self::$role]);//cette methode sera la meme pour le AC et le RP
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

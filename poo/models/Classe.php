@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\core\Model;
+use App\Core\Model;
 
 class Classe extends Model
 {
@@ -16,7 +16,7 @@ class Classe extends Model
 
         public function __construct()
         {
-                self::$table = "classe"; //une methode static on y accede a travers self(opérateur de portée de classe)
+                parent::$table = "classe"; //une methode static on y accede a travers self(opérateur de portée de classe)
         }
 
 
@@ -27,8 +27,8 @@ class Classe extends Model
         public function cours(): array
         {
 
-                $sql = "select c.* from cours c, classe cl where c.classe_id=cl.id and cl.id={$this->id}"; //ici on récupere les cours d'une classe   
-
+                $sql = "select c.* from cours c, classe cl where c.classe_id=cl.id and cl.id=?"; //ici on récupere les cours d'une classe
+                 parent::selectWhere($sql,[$this->id]);//dans une classe on peut avoir plusieur cours donc le single reste a false pour que la reqeute puisse nous retourner plusieur valeur 
                 return [];
         }
 

@@ -1,7 +1,7 @@
 <?php
- namespace App\Models;
+namespace App\Models;
 
-use App\core\Model;
+use App\Core\Model;
 
 class Cours extends Model{
     private int $id;
@@ -13,7 +13,7 @@ class Cours extends Model{
     
     public function __construct()
     {
-            self::$table="cours";//une methode static on y accede a travers self(opérateur de portée de classe)
+            parent::$table="cours";//une methode static on y accede a travers self(opérateur de portée de classe)
     }
     //ManyTooOne =>classe
     //un objt de type cours contint un objet de type classe
@@ -26,7 +26,8 @@ class Cours extends Model{
     //un objt de type cours contint un objet de type professeur
     //plusieurs objet de type cours sont associé a un objet de type professeur
     public function professeur():Professeur{
-        $sql="select u.* from cours c, user u where c.professeur_id=u.id and c.id={$this->id} and role like 'ROLE_PROFESSEUR"; 
+        $sql="select u.* from cours c, user u where c.professeur_id=u.id and c.id=? and role like 'ROLE_PROFESSEUR"; 
+         parent::selectWhere($sql,[$this->id],true);
         return new Professeur();
     }
 
@@ -34,8 +35,9 @@ class Cours extends Model{
     //un objt de type cours contint un objet de type module
     //plusieurs objet de type cours sont associé a un objet de typ module
     public function module():Module{
-        $sql="select m,* from cours c, module m where c.module_id=m.id and c.id={$this->id}";//ici on veut récupérer le module d'un cours et on une jointure ici
-        
+        $sql="select m,* from cours c, module m where c.module_id=m.id and c.id=?";//ici on veut récupérer le module d'un cours et on une jointure ici
+        //requet préparé 
+        parent::selectWhere($sql,[$this->id],true);//sigle est a true car la requet retourne un seul résultat, on met parent car c une methose hérité
         return new Module();
     }
 

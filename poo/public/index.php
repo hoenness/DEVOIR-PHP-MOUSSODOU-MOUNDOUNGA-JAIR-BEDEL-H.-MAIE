@@ -1,5 +1,12 @@
 <?php
 //on aura tjrs besoin de charger l'autoloading ici pourqu'il puisse faire le chargement automatique
+
+use App\Core\DataBase;
+use App\Exceptions\BdConnexionException;
+use App\Models\RP;
+
+
+
 require_once("../vendor/autoload.php");
 
 //notre application sera lancée a partir d'ici( au niveau du terminal, l'application on la lance sur le dossier public, pour lancer le serveur en local on fera:php -S localhost:8000 -t public)
@@ -60,10 +67,10 @@ require_once("../vendor/autoload.php");
 
 //un RP est un user c'est pourqw il n'y a pas d'erreur 
 //$rp=new RP();//New fait appelle au constructeur
-$rp->setId(1)
-     ->setlogin("douvewane")
-     ->setPassword("douve");
-echo $rp->getRole();
+// $rp->setId(1)
+//      ->setlogin("douvewane")
+//      ->setPassword("douve");
+// echo $rp->getRole();
 //$rp->getRole("ROLE_AC");
 //Ici on constate que l'on peut changer le role comme rp herite de user et c'est un pb donc on va le régler par la redefinition
 
@@ -84,13 +91,18 @@ echo $rp->getRole();
 //en php notre hub de dependance s'applle https://packagist.org/ 
 //maintenanant pour utiliser une classe , on a plus besoin require 
 //on indique seulement le chemein namespace
-use App\Models\RP;
-$rp = new RP();
+// use App\Models\Module;
+// use App\Models\RP;
+// $rp = new RP();
+//pour executer le projet php -S localhost:8000 -t public(dans le terminal)
 
+$rp =new RP();
+$rp->setLogin("rp1");
+$rp->setPassword("rp");
+$rp->insert();
 
-
-
-
-
-
-?>
+//pour recuperer tous les rp
+echo"<pre>";
+RP::selectAll();
+var_dump(RP::selectAll(1));
+echo"</pre>";
